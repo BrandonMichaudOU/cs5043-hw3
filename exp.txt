@@ -1,0 +1,6 @@
+--Ntraining=3
+--epochs=100
+--patience=10
+--batch=256
+--shuffle=200
+--min_delta=0.001

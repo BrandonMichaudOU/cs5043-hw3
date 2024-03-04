@@ -1,0 +1,9 @@
+--conv_size
+3
+--conv_nfilters
+10
+--pool
+2
+--hidden
+50
+20
