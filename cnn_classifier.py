@@ -21,7 +21,7 @@ def create_cnn_classifier_network(image_size, nchannels, conv_layers=None, dense
                          kernel_regularizer=tf.keras.regularizers.l2(l2=lambda_l2)))
         model.add(MaxPooling2D(pool_size=conv_layer['pool_size'], strides=conv_layer['strides'], padding=padding,
                                name=f'max_pool_{i}'))
-        model.add(SpatialDropout2D(p_spatial_dropout))
+        model.add(SpatialDropout2D(p_spatial_dropout if p_spatial_dropout is not None else 0))
         if conv_layer['batch_normalization']:
             model.add(BatchNormalization())
 
@@ -32,7 +32,7 @@ def create_cnn_classifier_network(image_size, nchannels, conv_layers=None, dense
     for i, dense_layer in enumerate(dense_layers):
         model.add(Dense(dense_layer['units'], use_bias=True, name=f'dense_{i}', activation=dense_activation,
                         kernel_regularizer=tf.keras.regularizers.l2(l2=lambda_l2)))
-        model.add(Dropout(p_dropout))
+        model.add(Dropout(p_dropout if p_dropout is not None else 0))
         if dense_layer['batch_normalization']:
             model.add(BatchNormalization())
 
