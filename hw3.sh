@@ -3,7 +3,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --partition=disc_dual_a100_students
 #SBATCH --cpus-per-task=64
-#SBATCH --mem=10G
+#SBATCH --mem=30G
 #SBATCH --output=outputs/hw3_%j_stdout.txt
 #SBATCH --error=outputs/hw3_%j_stderr.txt
 #SBATCH --time=01:00:00
