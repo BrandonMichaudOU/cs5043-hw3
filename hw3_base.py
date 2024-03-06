@@ -41,6 +41,7 @@ import wandb
 import socket
 
 from tensorflow.keras.utils import plot_model
+from tensorflow import keras
 
 # Provided
 from job_control import *
