@@ -1,5 +1,5 @@
 import tensorflow as tf
-from keras.layers import (InputLayer, Dense, Activation, Flatten, Dropout, BatchNormalization, Conv2D, MaxPooling2D,
+from keras.layers import (InputLayer, Dense, Dropout, BatchNormalization, Conv2D, MaxPooling2D,
                           GlobalMaxPooling2D, SpatialDropout2D)
 from tensorflow.keras.models import Sequential
 

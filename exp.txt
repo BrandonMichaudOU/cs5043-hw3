@@ -1,3 +1,5 @@
+--project 'hw3'
+--nogo
 --Ntraining=3
 --epochs=100
 --patience=10
