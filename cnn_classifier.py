@@ -45,6 +45,4 @@ def create_cnn_classifier_network(image_size, nchannels, conv_layers=None, dense
     # Bind the optimizer and the loss function to the model
     model.compile(loss=loss, optimizer=opt, metrics=metrics)
 
-    # Generate an ASCII representation of the architecture
-    print(model.summary())
     return model
