@@ -86,15 +86,6 @@ def create_parser():
     parser.add_argument('--steps_per_epoch', type=int, default=None, help="Number of training batches per epoch (must use --repeat if you are using this)")
     parser.add_argument('--no_use_py_func', action='store_true', help="False = use py_function in creating the dataset")
 
-    # Image Augmentation: REVISIT TODO
-    #parser.add_argument('--rotation_range', type=int, default=0, help="Image Generator: rotation range")
-    #parser.add_argument('--width_shift_range', type=int, default=0, help="Image Generator: width shift range")
-    #parser.add_argument('--height_shift_range', type=int, default=0, help="Image Generator: height shift range")
-    #parser.add_argument('--shear_range', type=float, default=0.0, help="Image Generator: shift range")
-    #parser.add_argument('--zoom_range', type=float, default=0.0, help="Image Generator: zoom range")
-    #parser.add_argument('--horizontal_flip', action='store_true', help='Image Generator: horizontal flip')
-    #parser.add_argument('--vertical_flip', action='store_true', help='Image Generator: vertical flip')
-
     # Post
     parser.add_argument('--render', action='store_true', default=False , help='Write model image')
     parser.add_argument('--save_model', action='store_true', default=False , help='Save a model file')

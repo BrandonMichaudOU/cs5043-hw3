@@ -40,16 +40,7 @@ import pandas as pd
 import wandb
 import socket
 
-from keras.layers import Dense, Activation, Flatten, Dropout, BatchNormalization
-from keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.utils import plot_model
-
-#############
-# REMOVE THESE LINES if symbiotic_metrics, job_control, networks are in the same directory
-tf_tools = "../../../../tf_tools/"
-sys.path.append(tf_tools + "experiment_control")
-sys.path.append(tf_tools + "networks")
-#############
 
 # Provided
 from job_control import *
@@ -59,18 +50,6 @@ from hw3_parser import *
 # You need to provide this yourself
 from cnn_classifier import *
 
-#################################################################
-# Default plotting parameters
-FIGURESIZE=(10,6)
-FONTSIZE=18
-
-plt.rcParams['figure.figsize'] = FIGURESIZE
-plt.rcParams['font.size'] = FONTSIZE
-
-plt.rcParams['xtick.labelsize'] = FONTSIZE
-plt.rcParams['ytick.labelsize'] = FONTSIZE
-
-#################################################################
 
 def exp_type_to_hyperparameters(args):
     '''
@@ -368,7 +347,7 @@ def load_precached_folds(args, seed=42):
     # Done
     return ds_training, ds_validation, ds_testing, nobjects
     
-#################################################################
+
 def execute_exp(args=None, multi_gpus=False):
     '''
     Perform the training and evaluation for a single model
@@ -403,17 +382,16 @@ def execute_exp(args=None, multi_gpus=False):
 
     if args.precache is None:
         # Load individual files (all objects)
-        ds_train, ds_validation, ds_testing, n_classes = load_data_set_by_folds(args, objects = list(range(10)))
+        ds_train, ds_validation, ds_testing, n_classes = load_data_set_by_folds(args, objects=list(range(10)))
     else:
         # Load pre-cached data
         ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
 
-    ####################################################
     # Build the model
     if args.verbose >= 3:
         print('Building network')
 
-    image_size=args.image_size[0:2]
+    image_size = args.image_size[0:2]
     nchannels = args.image_size[2]
 
     # Network config
@@ -423,8 +401,11 @@ def execute_exp(args=None, multi_gpus=False):
     #
     #  Our implementation requries 2-tuples for kernel size, pool size and stride size
     #
-    conv_layers = [{'filters': f, 'kernel_size': (s,s), 'pool_size': (p,p), 'strides': (p,p), 'batch_normalization': args.batch_normalization}
-                   if p > 1 else {'filters': f, 'kernel_size': (s,s), 'pool_size': None, 'strides': None, 'batch_normalization': args.batch_normalization}
+    conv_layers = [{'filters': f, 'kernel_size': (s, s), 'pool_size': (p, p), 'strides': (p, p),
+                    'batch_normalization': args.batch_normalization}
+                   if p > 1 else
+                   {'filters': f, 'kernel_size': (s, s), 'pool_size': None, 'strides': None,
+                    'batch_normalization': args.batch_normalization}
                    for s, f, p, in zip(args.conv_size, args.conv_nfilters, args.pool)]
     
     dense_layers = [{'units': i, 'batch_normalization': args.batch_normalization} for i in args.hidden]
@@ -450,7 +431,6 @@ def execute_exp(args=None, multi_gpus=False):
                                                   loss='sparse_categorical_crossentropy',
                                                   metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
                                                   padding=args.padding,
-                                                  flatten=False,
                                                   conv_activation=args.activation_conv,
                                                   dense_activation=args.activation_dense)
     else:
@@ -467,7 +447,6 @@ def execute_exp(args=None, multi_gpus=False):
                                               loss='sparse_categorical_crossentropy',
                                               metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
                                               padding=args.padding,
-                                              flatten=False,
                                               conv_activation=args.activation_conv,
                                               dense_activation=args.activation_dense)
     
@@ -628,8 +607,7 @@ def check_completeness(args):
     # Give the list of indices that can be inserted into the --array line of the batch file
     print("Missing indices (%d): %s"%(len(indices),','.join(str(x) for x in indices)))
 
-    
-#################################################################
+
 if __name__ == "__main__":
     # Parse and check incoming arguments
     parser = create_parser()
@@ -657,9 +635,6 @@ if __name__ == "__main__":
         print('We have %d GPUs\n'%n_visible_devices)
     else:
         print('NO GPU')
-
-        #if args.verbose >= 3:
-        #print('GPU configured')
 
     if args.check:
         # Just check to see if all experiments have been executed
