@@ -1,6 +1,7 @@
---project 'hw3'
+--project='hw3'
 --nogo
 --Ntraining=3
+--lrate=0.001
 --epochs=100
 --patience=10
 --batch=256
