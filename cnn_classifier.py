@@ -16,7 +16,7 @@ def create_cnn_classifier_network(image_size, nchannels, conv_layers=None, dense
 
     # Convolution modules
     for i, conv_layer in enumerate(conv_layers):
-        model.add(Conv2D(filters=conv_layer['filter'], kernel_size=conv_layer['kernel_size'], strides=1,
+        model.add(Conv2D(filters=conv_layer['filters'], kernel_size=conv_layer['kernel_size'], strides=1,
                          padding=padding, use_bias=True, name=f'conv_{i}', activation=conv_activation,
                          kernel_regularizer=tf.keras.regularizers.l2(l2=lambda_l2)))
         model.add(MaxPooling2D(pool_size=conv_layer['pool_size'], strides=conv_layer['strides'], padding=padding,
