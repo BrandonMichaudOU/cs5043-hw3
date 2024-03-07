@@ -18,4 +18,4 @@ conda activate dnn_2024_02
 module load cuDNN/8.9.2.26-CUDA-12.2.0
 
 
-python hw3_base.py -v @exp.txt @oscer.txt @net_shallow.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --precache datasets_by_fold_4_objects --dataset /scratch/fagg/core50
+python hw3_base.py -v @exp.txt @oscer.txt @net_deep.txt --exp_index $SLURM_ARRAY_TASK_ID --cpus_per_task $SLURM_CPUS_PER_TASK --precache datasets_by_fold_4_objects --dataset /scratch/fagg/core50
