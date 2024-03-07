@@ -8,4 +8,3 @@
 --shuffle=200
 --min_delta=0.001
 --save_model
---nogo
