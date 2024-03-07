@@ -2,7 +2,7 @@
 --Ntraining=3
 --lrate=0.001
 --epochs=100
---patience=10
+--patience=100
 --min_delta=0
 --batch=256
 --shuffle=200
