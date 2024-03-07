@@ -2,8 +2,8 @@
 5
 3
 --conv_nfilters
-10
-10
+64
+32
 --pool
 2
 2
