@@ -1,6 +1,6 @@
 --project=hw3
 --Ntraining=3
---lrate=0.001
+--lrate=0.0001
 --epochs=500
 --patience=100
 --min_delta=0
