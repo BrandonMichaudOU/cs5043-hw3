@@ -404,9 +404,9 @@ def execute_exp(args=None, multi_gpus=False):
     #
     conv_layers = [{'filters': f, 'kernel_size': (s, s), 'pool_size': (p, p), 'strides': (p, p),
                     'batch_normalization': args.batch_normalization}
-                   if p > 1 else
-                   {'filters': f, 'kernel_size': (s, s), 'pool_size': None, 'strides': None,
-                    'batch_normalization': args.batch_normalization}
+                   # if p > 1 else
+                   # {'filters': f, 'kernel_size': (s, s), 'pool_size': None, 'strides': None,
+                   #  'batch_normalization': args.batch_normalization}
                    for s, f, p, in zip(args.conv_size, args.conv_nfilters, args.pool)]
     
     dense_layers = [{'units': i, 'batch_normalization': args.batch_normalization} for i in args.hidden]
