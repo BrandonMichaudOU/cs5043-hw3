@@ -53,3 +53,7 @@
 128
 64
 --padding=same
+--l2=0.0001
+--dropout=0.5
+--spatial_dropout=0.1
+--batch_normalization
