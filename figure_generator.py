@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pickle
 
 
-def figure2():
+def figure3():
     deep_test_accuracy = np.empty(5)
     shallow_test_accuracy = np.empty(5)
     for r in range(5):
@@ -27,4 +27,4 @@ def figure2():
 
 
 if __name__ == '__main__':
-    figure2()
+    figure3()
