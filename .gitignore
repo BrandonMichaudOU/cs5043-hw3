@@ -3,3 +3,5 @@ results
 outputs
 wandb
 __pycache__
+*.png
+Figures
