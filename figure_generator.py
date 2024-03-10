@@ -87,7 +87,7 @@ def figure4(args):
     ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
     model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
                                     'ntrain_03_rot_00_model')
-    for ins, outs in ds_testing.take(2):
+    for ins, outs in ds_testing.take(1):
         print(ins.shape)
         print(outs.shape)
         model.predict(ins)
@@ -106,7 +106,7 @@ if __name__ == '__main__':
         'rotation': 0,
         'Ntraining': 3,
         'cache': '',
-        'batch': 1,
+        'batch': 1024,
         'prefetch': 8,
         'repeat': False,
         'shuffle': 0
