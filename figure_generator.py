@@ -92,7 +92,7 @@ def figure4(args):
         # print(outs.shape)
         # model.predict(ins)
         fig = plt.figure()
-        plt.imshow(ins)
+        plt.imshow(ins[0])
         plt.title('test')
         fig.savefig('images/test.png')
 
