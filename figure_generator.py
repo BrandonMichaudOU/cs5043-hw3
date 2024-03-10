@@ -88,11 +88,13 @@ def figure4(args):
     model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
                                     'ntrain_03_rot_00_model')
     for ins, outs in ds_testing.take(1):
-        model.predict(ins)
-        fig = plt.figure()
-        plt.imshow(ins)
-        plt.title('test')
-        fig.savefig('images/test.png')
+        print(ins.shape)
+        print(outs.shape)
+        # model.predict(ins)
+        # fig = plt.figure()
+        # plt.imshow(ins)
+        # plt.title('test')
+        # fig.savefig('images/test.png')
 
 
 if __name__ == '__main__':
