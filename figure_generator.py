@@ -94,7 +94,7 @@ def figure4(args):
         fig = plt.figure()
         plt.imshow(ins[0])
         plt.title('test')
-        fig.savefig('images/test.png')
+        fig.savefig('figures/test.png')
 
 
 if __name__ == '__main__':
