@@ -83,21 +83,24 @@ def figure3():
     fig.savefig('figures/fig3.png')
 
 
-def figure4(args):
+def figure4_5(args):
     args['batch'] = 5
     ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
     model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
                                     'ntrain_03_rot_00_model')
-    for ins, outs in ds_testing.take(1):
-        predictions = model.predict(ins)
-        for i in range(ins.shape[0]):
-            fig = plt.figure(figsize=(5, 5))
-            plt.imshow(ins[i])
-            plt.axis('off')
-            for j, text in enumerate(predictions[i]):
-                plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
-                         ha='left')
-            fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
+    # for ins, outs in ds_testing.take(1):
+    #     predictions = model.predict(ins)
+    #     for i in range(ins.shape[0]):
+    #         fig = plt.figure(figsize=(5, 5))
+    #         plt.imshow(ins[i])
+    #         plt.axis('off')
+    #         for j, text in enumerate(predictions[i]):
+    #             plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
+    #                      ha='left')
+    #         fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
+
+    predictions = model.predict(ds_testing)
+    print(predictions.shape)
 
 
 if __name__ == '__main__':
@@ -114,4 +117,4 @@ if __name__ == '__main__':
         'repeat': False,
         'shuffle': 0
     }
-    figure4(args)
+    figure4_5(args)
