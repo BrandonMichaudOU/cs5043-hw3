@@ -99,8 +99,14 @@ def figure4_5(args):
     #                      ha='left')
     #         fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
 
-    predictions = model.predict(ds_testing)
-    print(predictions.shape)
+    # predictions = model.predict(ds_testing)
+    # pred_classes = np.empty(predictions.shape[0])
+    # for i in range(predictions.shape[0]):
+    #     pred_classes[i] = np.argmax(predictions[i])
+    # print(predictions.shape)
+
+    for ins, outs, in ds_testing:
+        print(outs.shape)
 
 
 if __name__ == '__main__':
