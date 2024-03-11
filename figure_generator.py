@@ -113,7 +113,7 @@ def figure4_5(args):
     pred_classes = np.array(pred_classes)
     true_classes = np.array(true_classes)
     cm = confusion_matrix(true_classes, pred_classes)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot()
     plt.title("Confusion Matrix")
     plt.savefig('figures/fig5.png')
