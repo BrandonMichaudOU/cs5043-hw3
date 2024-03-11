@@ -92,7 +92,7 @@ def figure4(args):
         predictions = model.predict(ins)
         for i in range(ins.shape[0]):
             fig = plt.figure(figsize=(5, 5))
-            plt.imshow(ins[0])
+            plt.imshow(ins[i])
             plt.axis('off')
             for j, text in enumerate(predictions[i]):
                 plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
