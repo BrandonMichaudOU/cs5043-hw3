@@ -91,11 +91,12 @@ def figure4(args):
     for ins, outs in ds_testing.take(1):
         predictions = model.predict(ins)
         for i in range(ins.shape[0]):
-            fig = plt.figure()
+            fig = plt.figure(figsize=(5, 5))
             plt.imshow(ins[0])
             plt.axis('off')
-            plt.text(0.5, 0.1, f'{predictions[i]}', color='black', ha='center', va='center', fontsize=20,
-                     transform=plt.gca().transAxes)
+            for j, text in enumerate(predictions[i]):
+                plt.text(0.8, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="white", fontsize=20,
+                         ha='left')
             fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
 
 
