@@ -194,4 +194,4 @@ if __name__ == '__main__':
         'shuffle': 0
     }
     figure3()
-    # figure4_5(args, 5)
+    figure4_5(args, 5)
