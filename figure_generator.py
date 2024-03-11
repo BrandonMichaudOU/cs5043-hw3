@@ -84,18 +84,20 @@ def figure3():
 
 
 def figure4(args):
+    args['batch'] = 5
     ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
     model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
                                     'ntrain_03_rot_00_model')
     for ins, outs in ds_testing.take(1):
-        # print(ins.shape)
-        # print(outs.shape)
-        prediction = model.predict(ins)
-        print(prediction)
-        fig = plt.figure()
-        plt.imshow(ins[0])
-        plt.title('test')
-        fig.savefig('figures/test.png')
+        for i in range(ins.shape[0]):
+            prediction = model.predict(ins[i])
+            print(prediction)
+            fig = plt.figure()
+            plt.imshow(ins[0])
+            plt.axis('off')
+            plt.text(0.5, 0.5, f'{prediction}', color='black', ha='center', va='center', fontsize=20,
+                     transform=plt.gca().transAxes)
+            fig.savefig(f'figures/fig4_{i}.png')
 
 
 if __name__ == '__main__':
