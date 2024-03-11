@@ -105,8 +105,18 @@ def figure4_5(args):
     #     pred_classes[i] = np.argmax(predictions[i])
     # print(predictions.shape)
 
+    pred_classes = []
+    true_classes = []
     for ins, outs, in ds_testing:
-        print(ins.shape)
+        predictions = model.predict(ins)
+        highest_class = np.empty(predictions.shape[0])
+        for i in range(predictions.shape[0]):
+            highest_class[i] = np.argmax(predictions[i])
+        pred_classes.extend(highest_class)
+        true_classes.extend(outs)
+    pred_classes = np.array(pred_classes)
+    true_classes = np.array(true_classes)
+    print(pred_classes.shape)
 
 
 if __name__ == '__main__':
