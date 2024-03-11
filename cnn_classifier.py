@@ -8,6 +8,26 @@ def create_cnn_classifier_network(image_size, nchannels, conv_layers=None, dense
                                   p_spatial_dropout=None, lambda_l2=None, lrate=0.001, n_classes=4,
                                   loss='sparse_categorical_crossentropy', metrics=None, padding='valid',
                                   conv_activation='elu', dense_activation='elu'):
+    '''
+    Creates a sequential convolutional neural network used for image classification
+    :param image_size: The size of the input images (2-tuple)
+    :param nchannels: Number of color channels of input images
+    :param conv_layers: List of dictionaries containing keys for filters, kernel_size, pool_size, strides, and
+                        batch_regularization. Each dictionary represents a single convolutional layer followed by a
+                        single max pooling layer specified by the key-value pairs.
+    :param dense_layers: List of dictionaries containing keys for units and batch_normalization. Each dictionary
+                         represents a single dense layer followed by a single batch normalization layer (if True)
+    :param p_dropout: Probability of dropout for dense layers
+    :param p_spatial_dropout: Probability of spatial dropout for convolutional layers
+    :param lambda_l2: L2 regularization hyperparameter. Applies to both convolutional and dense layers
+    :param lrate: Learning rate
+    :param n_classes: Number of output classes
+    :param loss: Loss to optimize
+    :param metrics: Additional metrics to calculate
+    :param padding: Type of padding to use for convolutions. Can be same or valid
+    :param conv_activation: The activation function for the convolutional layers
+    :param dense_activation: The activation function for the dense layers
+    '''
     # Build sequential model
     model = Sequential()
 

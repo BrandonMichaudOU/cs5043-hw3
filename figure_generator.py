@@ -62,6 +62,9 @@ def load_precached_folds(args, seed=42):
 
 
 def figure3():
+    '''
+    Generates figure 3 in the homework specification
+    '''
     # Load accuracies from results files
     deep_test_accuracy = np.empty(5)
     shallow_test_accuracy = np.empty(5)
@@ -90,6 +93,11 @@ def figure3():
 
 
 def figure4_5(args, num_fig4):
+    '''
+    Generates figures 4 and 5 in project specification
+    :param args: Arguments used for loading dataset
+    :param num_fig4: Number of images to save for figures 4
+    '''
     # Loop over every rotation and generate confusion matrices
     for r in range(5):
         args['rotation'] = r
