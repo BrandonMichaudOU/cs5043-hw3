@@ -96,10 +96,10 @@ def figure4_5(args, num_fig4):
         ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
         shallow_model = keras.models.load_model(f'results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_'
                                                 f'50_20_LR_0.001000_ntrain_03_rot_{r:02d}_model')
-        deep_model = keras.models.load_model(f'image_Csize_1_5_3_1_5_3_1_5_3_1_5_3_1_5_3_Cfilters_8_8_8_16_16_16_32_32_'
-                                             f'32_64_64_64_32_32_32_Pool_1_1_1_2_1_1_2_1_1_2_1_1_2_1_1_Pad_same_hidden_'
-                                             f'1024_512_256_128_64_drop_0.500_sdrop_0.200_L2_0.001000_LR_0.000100_'
-                                             f'ntrain_03_rot_{r:02d}_model')
+        deep_model = keras.models.load_model(f'results/image_Csize_1_5_3_1_5_3_1_5_3_1_5_3_1_5_3_Cfilters_8_8_8_16_16_'
+                                             f'16_32_32_32_64_64_64_32_32_32_Pool_1_1_1_2_1_1_2_1_1_2_1_1_2_1_1_Pad_'
+                                             f'same_hidden_1024_512_256_128_64_drop_0.500_sdrop_0.200_L2_0.001000_LR_'
+                                             f'0.000100_ntrain_03_rot_{r:02d}_model')
 
         # Generate figure 4 for only first rotation
         if r == 0:
