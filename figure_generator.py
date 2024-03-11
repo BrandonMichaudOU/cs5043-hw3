@@ -106,7 +106,7 @@ def figure4_5(args):
     # print(predictions.shape)
 
     for ins, outs, in ds_testing:
-        print(outs.shape)
+        print(ins.shape)
 
 
 if __name__ == '__main__':
