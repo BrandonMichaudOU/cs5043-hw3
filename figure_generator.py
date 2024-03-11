@@ -90,7 +90,8 @@ def figure4(args):
     for ins, outs in ds_testing.take(1):
         # print(ins.shape)
         # print(outs.shape)
-        # model.predict(ins)
+        prediction = model.predict(ins)
+        print(prediction)
         fig = plt.figure()
         plt.imshow(ins[0])
         plt.title('test')
