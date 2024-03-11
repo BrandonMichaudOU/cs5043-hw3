@@ -1,0 +1,233 @@
+GPUS: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+We have 1 GPUs
+
+1
+Total jobs: 5
+{'rotation': 1}
+Batch size 1024
+/scratch/fagg/core50/datasets_by_fold_4_objects/meta.csv
+Number of Objects: 4
+Number of Folds: 5
+Training:  [1 2 3]
+Validation:  4
+Testing:  0
+len:  5
+Cache to RAM
+Cache to RAM
+Cache to RAM
+Dense layers: [{'units': 1024, 'batch_normalization': True}, {'units': 512, 'batch_normalization': True}, {'units': 256, 'batch_normalization': True}, {'units': 128, 'batch_normalization': True}, {'units': 64, 'batch_normalization': True}]
+Conv layers: [{'filters': 8, 'kernel_size': (1, 1), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 8, 'kernel_size': (5, 5), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 8, 'kernel_size': (3, 3), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 16, 'kernel_size': (1, 1), 'pool_size': (2, 2), 'strides': (2, 2), 'batch_normalization': True}, {'filters': 16, 'kernel_size': (5, 5), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 16, 'kernel_size': (3, 3), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (1, 1), 'pool_size': (2, 2), 'strides': (2, 2), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (5, 5), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (3, 3), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 64, 'kernel_size': (1, 1), 'pool_size': (2, 2), 'strides': (2, 2), 'batch_normalization': True}, {'filters': 64, 'kernel_size': (5, 5), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 64, 'kernel_size': (3, 3), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (1, 1), 'pool_size': (2, 2), 'strides': (2, 2), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (5, 5), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}, {'filters': 32, 'kernel_size': (3, 3), 'pool_size': (1, 1), 'strides': (1, 1), 'batch_normalization': True}]
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv_0 (Conv2D)             (None, 128, 128, 8)       32        
+                                                                 
+ max_pool_0 (MaxPooling2D)   (None, 128, 128, 8)       0         
+                                                                 
+ spatial_dropout2d (Spatial  (None, 128, 128, 8)       0         
+ Dropout2D)                                                      
+                                                                 
+ batch_normalization (Batch  (None, 128, 128, 8)       32        
+ Normalization)                                                  
+                                                                 
+ conv_1 (Conv2D)             (None, 128, 128, 8)       1608      
+                                                                 
+ max_pool_1 (MaxPooling2D)   (None, 128, 128, 8)       0         
+                                                                 
+ spatial_dropout2d_1 (Spati  (None, 128, 128, 8)       0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_1 (Bat  (None, 128, 128, 8)       32        
+ chNormalization)                                                
+                                                                 
+ conv_2 (Conv2D)             (None, 128, 128, 8)       584       
+                                                                 
+ max_pool_2 (MaxPooling2D)   (None, 128, 128, 8)       0         
+                                                                 
+ spatial_dropout2d_2 (Spati  (None, 128, 128, 8)       0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_2 (Bat  (None, 128, 128, 8)       32        
+ chNormalization)                                                
+                                                                 
+ conv_3 (Conv2D)             (None, 128, 128, 16)      144       
+                                                                 
+ max_pool_3 (MaxPooling2D)   (None, 64, 64, 16)        0         
+                                                                 
+ spatial_dropout2d_3 (Spati  (None, 64, 64, 16)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_3 (Bat  (None, 64, 64, 16)        64        
+ chNormalization)                                                
+                                                                 
+ conv_4 (Conv2D)             (None, 64, 64, 16)        6416      
+                                                                 
+ max_pool_4 (MaxPooling2D)   (None, 64, 64, 16)        0         
+                                                                 
+ spatial_dropout2d_4 (Spati  (None, 64, 64, 16)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_4 (Bat  (None, 64, 64, 16)        64        
+ chNormalization)                                                
+                                                                 
+ conv_5 (Conv2D)             (None, 64, 64, 16)        2320      
+                                                                 
+ max_pool_5 (MaxPooling2D)   (None, 64, 64, 16)        0         
+                                                                 
+ spatial_dropout2d_5 (Spati  (None, 64, 64, 16)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_5 (Bat  (None, 64, 64, 16)        64        
+ chNormalization)                                                
+                                                                 
+ conv_6 (Conv2D)             (None, 64, 64, 32)        544       
+                                                                 
+ max_pool_6 (MaxPooling2D)   (None, 32, 32, 32)        0         
+                                                                 
+ spatial_dropout2d_6 (Spati  (None, 32, 32, 32)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_6 (Bat  (None, 32, 32, 32)        128       
+ chNormalization)                                                
+                                                                 
+ conv_7 (Conv2D)             (None, 32, 32, 32)        25632     
+                                                                 
+ max_pool_7 (MaxPooling2D)   (None, 32, 32, 32)        0         
+                                                                 
+ spatial_dropout2d_7 (Spati  (None, 32, 32, 32)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_7 (Bat  (None, 32, 32, 32)        128       
+ chNormalization)                                                
+                                                                 
+ conv_8 (Conv2D)             (None, 32, 32, 32)        9248      
+                                                                 
+ max_pool_8 (MaxPooling2D)   (None, 32, 32, 32)        0         
+                                                                 
+ spatial_dropout2d_8 (Spati  (None, 32, 32, 32)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_8 (Bat  (None, 32, 32, 32)        128       
+ chNormalization)                                                
+                                                                 
+ conv_9 (Conv2D)             (None, 32, 32, 64)        2112      
+                                                                 
+ max_pool_9 (MaxPooling2D)   (None, 16, 16, 64)        0         
+                                                                 
+ spatial_dropout2d_9 (Spati  (None, 16, 16, 64)        0         
+ alDropout2D)                                                    
+                                                                 
+ batch_normalization_9 (Bat  (None, 16, 16, 64)        256       
+ chNormalization)                                                
+                                                                 
+ conv_10 (Conv2D)            (None, 16, 16, 64)        102464    
+                                                                 
+ max_pool_10 (MaxPooling2D)  (None, 16, 16, 64)        0         
+                                                                 
+ spatial_dropout2d_10 (Spat  (None, 16, 16, 64)        0         
+ ialDropout2D)                                                   
+                                                                 
+ batch_normalization_10 (Ba  (None, 16, 16, 64)        256       
+ tchNormalization)                                               
+                                                                 
+ conv_11 (Conv2D)            (None, 16, 16, 64)        36928     
+                                                                 
+ max_pool_11 (MaxPooling2D)  (None, 16, 16, 64)        0         
+                                                                 
+ spatial_dropout2d_11 (Spat  (None, 16, 16, 64)        0         
+ ialDropout2D)                                                   
+                                                                 
+ batch_normalization_11 (Ba  (None, 16, 16, 64)        256       
+ tchNormalization)                                               
+                                                                 
+ conv_12 (Conv2D)            (None, 16, 16, 32)        2080      
+                                                                 
+ max_pool_12 (MaxPooling2D)  (None, 8, 8, 32)          0         
+                                                                 
+ spatial_dropout2d_12 (Spat  (None, 8, 8, 32)          0         
+ ialDropout2D)                                                   
+                                                                 
+ batch_normalization_12 (Ba  (None, 8, 8, 32)          128       
+ tchNormalization)                                               
+                                                                 
+ conv_13 (Conv2D)            (None, 8, 8, 32)          25632     
+                                                                 
+ max_pool_13 (MaxPooling2D)  (None, 8, 8, 32)          0         
+                                                                 
+ spatial_dropout2d_13 (Spat  (None, 8, 8, 32)          0         
+ ialDropout2D)                                                   
+                                                                 
+ batch_normalization_13 (Ba  (None, 8, 8, 32)          128       
+ tchNormalization)                                               
+                                                                 
+ conv_14 (Conv2D)            (None, 8, 8, 32)          9248      
+                                                                 
+ max_pool_14 (MaxPooling2D)  (None, 8, 8, 32)          0         
+                                                                 
+ spatial_dropout2d_14 (Spat  (None, 8, 8, 32)          0         
+ ialDropout2D)                                                   
+                                                                 
+ batch_normalization_14 (Ba  (None, 8, 8, 32)          128       
+ tchNormalization)                                               
+                                                                 
+ global_max_pooling2d (Glob  (None, 32)                0         
+ alMaxPooling2D)                                                 
+                                                                 
+ dense_0 (Dense)             (None, 1024)              33792     
+                                                                 
+ dropout (Dropout)           (None, 1024)              0         
+                                                                 
+ batch_normalization_15 (Ba  (None, 1024)              4096      
+ tchNormalization)                                               
+                                                                 
+ dense_1 (Dense)             (None, 512)               524800    
+                                                                 
+ dropout_1 (Dropout)         (None, 512)               0         
+                                                                 
+ batch_normalization_16 (Ba  (None, 512)               2048      
+ tchNormalization)                                               
+                                                                 
+ dense_2 (Dense)             (None, 256)               131328    
+                                                                 
+ dropout_2 (Dropout)         (None, 256)               0         
+                                                                 
+ batch_normalization_17 (Ba  (None, 256)               1024      
+ tchNormalization)                                               
+                                                                 
+ dense_3 (Dense)             (None, 128)               32896     
+                                                                 
+ dropout_3 (Dropout)         (None, 128)               0         
+                                                                 
+ batch_normalization_18 (Ba  (None, 128)               512       
+ tchNormalization)                                               
+                                                                 
+ dense_4 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_4 (Dropout)         (None, 64)                0         
+                                                                 
+ batch_normalization_19 (Ba  (None, 64)                256       
+ tchNormalization)                                               
+                                                                 
+ dense (Dense)               (None, 4)                 260       
+                                                                 
+=================================================================
+Total params: 966084 (3.69 MB)
+Trainable params: 961204 (3.67 MB)
+Non-trainable params: 4880 (19.06 KB)
+_________________________________________________________________
+None
+Namespace(project='hw3', check=False, nogo=False, force=False, verbose=1, cpus_per_task=64, gpu=True, exp_type=None, label=None, dataset='/scratch/fagg/core50', problem='condition', image_size=[128, 128, 3], meta_dataset='core50_df.pkl', precache='datasets_by_fold_4_objects', Nfolds=5, results_path='./results', exp_index=1, rotation=1, epochs=500, Ntraining=3, lrate=0.0001, conv_size=[1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3, 1, 5, 3], conv_nfilters=[8, 8, 8, 16, 16, 16, 32, 32, 32, 64, 64, 64, 32, 32, 32], pool=[1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1], padding='same', activation_conv='elu', batch_normalization=True, hidden=[1024, 512, 256, 128, 64], activation_dense='elu', dropout=0.5, spatial_dropout=0.2, L1_regularization=None, L2_regularization=0.001, min_delta=0.0, patience=100, monitor='val_loss', batch=1024, prefetch=8, num_parallel_calls=16, cache='', shuffle=200, generator_seed=42, repeat=False, steps_per_epoch=None, no_use_py_func=False, render=False, save_model=True)
+./results/image_Csize_1_5_3_1_5_3_1_5_3_1_5_3_1_5_3_Cfilters_8_8_8_16_16_16_32_32_32_64_64_64_32_32_32_Pool_1_1_1_2_1_1_2_1_1_2_1_1_2_1_1_Pad_same_hidden_1024_512_256_128_64_drop_0.500_sdrop_0.200_L2_0.001000_LR_0.000100_ntrain_03_rot_01
+#################
+Validation
+ 1/12 [=>............................] - ETA: 5s 2/12 [====>.........................] - ETA: 0s 3/12 [======>.......................] - ETA: 0s 4/12 [=========>....................] - ETA: 0s 5/12 [===========>..................] - ETA: 0s 6/12 [==============>...............] - ETA: 0s 7/12 [================>.............] - ETA: 0s 8/12 [===================>..........] - ETA: 0s 9/12 [=====================>........] - ETA: 0s10/12 [========================>.....] - ETA: 0s11/12 [==========================>...] - ETA: 0s12/12 [==============================] - ETA: 0s12/12 [==============================] - 1s 60ms/step
+ 1/12 [=>............................] - ETA: 1s - loss: 1.3797 - sparse_categorical_accuracy: 0.6348 2/12 [====>.........................] - ETA: 0s - loss: 1.4593 - sparse_categorical_accuracy: 0.6128 3/12 [======>.......................] - ETA: 0s - loss: 1.4438 - sparse_categorical_accuracy: 0.6139 4/12 [=========>....................] - ETA: 0s - loss: 1.4498 - sparse_categorical_accuracy: 0.6125 5/12 [===========>..................] - ETA: 0s - loss: 1.4546 - sparse_categorical_accuracy: 0.6141 6/12 [==============>...............] - ETA: 0s - loss: 1.4523 - sparse_categorical_accuracy: 0.6149 7/12 [================>.............] - ETA: 0s - loss: 1.4593 - sparse_categorical_accuracy: 0.6124 8/12 [===================>..........] - ETA: 0s - loss: 1.4509 - sparse_categorical_accuracy: 0.6139 9/12 [=====================>........] - ETA: 0s - loss: 1.4355 - sparse_categorical_accuracy: 0.616310/12 [========================>.....] - ETA: 0s - loss: 1.4301 - sparse_categorical_accuracy: 0.617811/12 [==========================>...] - ETA: 0s - loss: 1.4300 - sparse_categorical_accuracy: 0.617612/12 [==============================] - 1s 61ms/step - loss: 1.4388 - sparse_categorical_accuracy: 0.6156
+#################
+Testing
+ 1/12 [=>............................] - ETA: 6s 2/12 [====>.........................] - ETA: 1s 3/12 [======>.......................] - ETA: 1s 4/12 [=========>....................] - ETA: 1s 5/12 [===========>..................] - ETA: 1s 6/12 [==============>...............] - ETA: 1s 7/12 [================>.............] - ETA: 0s 8/12 [===================>..........] - ETA: 0s 9/12 [=====================>........] - ETA: 0s10/12 [========================>.....] - ETA: 0s11/12 [==========================>...] - ETA: 0s12/12 [==============================] - ETA: 0s12/12 [==============================] - 5s 439ms/step
+ 1/12 [=>............................] - ETA: 1s - loss: 0.9654 - sparse_categorical_accuracy: 0.7559 2/12 [====>.........................] - ETA: 0s - loss: 0.9691 - sparse_categorical_accuracy: 0.7534 3/12 [======>.......................] - ETA: 0s - loss: 0.9169 - sparse_categorical_accuracy: 0.7630 4/12 [=========>....................] - ETA: 0s - loss: 0.9183 - sparse_categorical_accuracy: 0.7644 5/12 [===========>..................] - ETA: 0s - loss: 0.9124 - sparse_categorical_accuracy: 0.7648 6/12 [==============>...............] - ETA: 0s - loss: 0.9103 - sparse_categorical_accuracy: 0.7646 7/12 [================>.............] - ETA: 0s - loss: 0.9137 - sparse_categorical_accuracy: 0.7642 8/12 [===================>..........] - ETA: 0s - loss: 0.9217 - sparse_categorical_accuracy: 0.7633 9/12 [=====================>........] - ETA: 0s - loss: 0.9217 - sparse_categorical_accuracy: 0.764410/12 [========================>.....] - ETA: 0s - loss: 0.9283 - sparse_categorical_accuracy: 0.763611/12 [==========================>...] - ETA: 0s - loss: 0.9232 - sparse_categorical_accuracy: 0.764412/12 [==============================] - 1s 61ms/step - loss: 0.9202 - sparse_categorical_accuracy: 0.7647
+#################
+Training
+      1/Unknown - 0s 62ms/step      2/Unknown - 0s 63ms/step      3/Unknown - 0s 62ms/step      4/Unknown - 0s 63ms/step      5/Unknown - 0s 63ms/step      6/Unknown - 0s 63ms/step      7/Unknown - 0s 63ms/step      8/Unknown - 1s 63ms/step      9/Unknown - 1s 63ms/step     10/Unknown - 1s 64ms/step     11/Unknown - 1s 64ms/step     12/Unknown - 1s 63ms/step     13/Unknown - 1s 64ms/step     14/Unknown - 1s 64ms/step     15/Unknown - 1s 64ms/step     16/Unknown - 1s 64ms/step     17/Unknown - 1s 64ms/step     18/Unknown - 1s 64ms/step     19/Unknown - 1s 64ms/step     20/Unknown - 1s 64ms/step     21/Unknown - 1s 63ms/step     22/Unknown - 1s 64ms/step     23/Unknown - 1s 64ms/step     24/Unknown - 2s 64ms/step     25/Unknown - 2s 64ms/step     26/Unknown - 2s 64ms/step     27/Unknown - 2s 64ms/step     28/Unknown - 2s 64ms/step     29/Unknown - 2s 63ms/step     30/Unknown - 2s 63ms/step     31/Unknown - 2s 63ms/step     32/Unknown - 2s 63ms/step     33/Unknown - 2s 63ms/step     34/Unknown - 2s 63ms/step     35/Unknown - 2s 63ms/step36/36 [==============================] - 2s 63ms/step
+      1/Unknown - 0s 98ms/step - loss: 0.1546 - sparse_categorical_accuracy: 0.9961      2/Unknown - 0s 65ms/step - loss: 0.1640 - sparse_categorical_accuracy: 0.9927      3/Unknown - 0s 66ms/step - loss: 0.1592 - sparse_categorical_accuracy: 0.9945      4/Unknown - 0s 67ms/step - loss: 0.1574 - sparse_categorical_accuracy: 0.9949      5/Unknown - 0s 75ms/step - loss: 0.1572 - sparse_categorical_accuracy: 0.9951      6/Unknown - 0s 73ms/step - loss: 0.1569 - sparse_categorical_accuracy: 0.9950      7/Unknown - 1s 72ms/step - loss: 0.1561 - sparse_categorical_accuracy: 0.9953      8/Unknown - 1s 71ms/step - loss: 0.1554 - sparse_categorical_accuracy: 0.9956      9/Unknown - 1s 71ms/step - loss: 0.1557 - sparse_categorical_accuracy: 0.9954     10/Unknown - 1s 70ms/step - loss: 0.1565 - sparse_categorical_accuracy: 0.9953     11/Unknown - 1s 70ms/step - loss: 0.1570 - sparse_categorical_accuracy: 0.9949     12/Unknown - 1s 69ms/step - loss: 0.1568 - sparse_categorical_accuracy: 0.9950     13/Unknown - 1s 69ms/step - loss: 0.1566 - sparse_categorical_accuracy: 0.9950     14/Unknown - 1s 69ms/step - loss: 0.1570 - sparse_categorical_accuracy: 0.9949     15/Unknown - 1s 69ms/step - loss: 0.1569 - sparse_categorical_accuracy: 0.9949     16/Unknown - 1s 69ms/step - loss: 0.1572 - sparse_categorical_accuracy: 0.9948     17/Unknown - 1s 69ms/step - loss: 0.1568 - sparse_categorical_accuracy: 0.9949     18/Unknown - 1s 69ms/step - loss: 0.1569 - sparse_categorical_accuracy: 0.9949     19/Unknown - 1s 69ms/step - loss: 0.1569 - sparse_categorical_accuracy: 0.9949     20/Unknown - 1s 69ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9945     21/Unknown - 1s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9944     22/Unknown - 2s 68ms/step - loss: 0.1574 - sparse_categorical_accuracy: 0.9944     23/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9941     24/Unknown - 2s 68ms/step - loss: 0.1579 - sparse_categorical_accuracy: 0.9940     25/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9941     26/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9941     27/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9940     28/Unknown - 2s 68ms/step - loss: 0.1577 - sparse_categorical_accuracy: 0.9939     29/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9940     30/Unknown - 2s 68ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9940     31/Unknown - 2s 67ms/step - loss: 0.1577 - sparse_categorical_accuracy: 0.9940     32/Unknown - 2s 67ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9940     33/Unknown - 2s 67ms/step - loss: 0.1576 - sparse_categorical_accuracy: 0.9940     34/Unknown - 2s 67ms/step - loss: 0.1574 - sparse_categorical_accuracy: 0.9940     35/Unknown - 2s 67ms/step - loss: 0.1575 - sparse_categorical_accuracy: 0.994036/36 [==============================] - 2s 66ms/step - loss: 0.1574 - sparse_categorical_accuracy: 0.9941
