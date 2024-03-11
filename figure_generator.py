@@ -62,6 +62,7 @@ def load_precached_folds(args, seed=42):
 
 
 def figure3():
+    # Load accuracies from results files
     deep_test_accuracy = np.empty(5)
     shallow_test_accuracy = np.empty(5)
     for r in range(5):
@@ -74,6 +75,8 @@ def figure3():
                   f'L2_0.001000_LR_0.000100_ntrain_03_rot_{r:02d}_results.pkl', "rb") as fp:
             results = pickle.load(fp)
             deep_test_accuracy[r] = results['predict_testing_eval'][1]
+
+    # Plot histogram of accuracies
     fig = plt.figure()
     plt.hist(shallow_test_accuracy, bins=5, color='blue', edgecolor='black', alpha=0.5, label='Shallow')
     plt.hist(deep_test_accuracy, bins=5, color='red', edgecolor='black', alpha=0.5, label='Deep')
@@ -84,39 +87,91 @@ def figure3():
     fig.savefig('figures/fig3.png')
 
 
-def figure4_5(args):
-    args['batch'] = 5
-    ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
-    model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
-                                    'ntrain_03_rot_00_model')
+def figure4_5(args, num_fig4):
+    # Loop over every rotation and generate confusion matrices
+    for r in range(5):
+        args['rotation'] = r
 
-    # for ins, outs in ds_testing.take(1):
-    #     predictions = model.predict(ins)
-    #     for i in range(ins.shape[0]):
-    #         fig = plt.figure(figsize=(5, 5))
-    #         plt.imshow(ins[i])
-    #         plt.axis('off')
-    #         for j, text in enumerate(predictions[i]):
-    #             plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
-    #                      ha='left')
-    #         fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
+        # Load dataset and corresponding models
+        ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
+        shallow_model = keras.models.load_model(f'results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_'
+                                                f'50_20_LR_0.001000_ntrain_03_rot_{r:02d}_model')
+        deep_model = keras.models.load_model(f'image_Csize_1_5_3_1_5_3_1_5_3_1_5_3_1_5_3_Cfilters_8_8_8_16_16_16_32_32_'
+                                             f'32_64_64_64_32_32_32_Pool_1_1_1_2_1_1_2_1_1_2_1_1_2_1_1_Pad_same_hidden_'
+                                             f'1024_512_256_128_64_drop_0.500_sdrop_0.200_L2_0.001000_LR_0.000100_'
+                                             f'ntrain_03_rot_{r:02d}_model')
 
-    pred_classes = []
-    true_classes = []
-    for ins, outs, in ds_testing:
-        predictions = model.predict(ins)
-        highest_class = np.empty(predictions.shape[0])
-        for i in range(predictions.shape[0]):
-            highest_class[i] = np.argmax(predictions[i])
-        pred_classes.extend(highest_class)
-        true_classes.extend(outs)
-    pred_classes = np.array(pred_classes)
-    true_classes = np.array(true_classes)
-    cm = confusion_matrix(true_classes, pred_classes)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-    disp.plot()
-    plt.title("Confusion Matrix")
-    plt.savefig('figures/fig5.png')
+        # Generate figure 4 for only first rotation
+        if r == 0:
+            # Get first batch
+            for ins, outs in ds_testing.take(1):
+                # Make predictions with both models
+                shallow_predictions = shallow_model.predict(ins)
+                deep_predictions = deep_model.predict(ins)
+
+                # Display predictions overlaying images for given number of images
+                for i in range(num_fig4):
+                    # Show image
+                    fig = plt.figure(figsize=(5, 5))
+                    plt.imshow(ins[i])
+                    plt.axis('off')
+
+                    # Overlay shallow predictions
+                    for j, text in enumerate(shallow_predictions[i]):
+                        plt.text(0.25, 0.8 - j * 0.1, f'{j}: {text * 100:.2f}%', transform=plt.gcf().transFigure,
+                                 color="black", fontsize=16, ha='left')
+
+                    # Overlay deep predictions
+                    for j, text in enumerate(deep_predictions[i]):
+                        plt.text(0.75, 0.8 - j * 0.1, f'{j}: {text * 100:.2f}%', transform=plt.gcf().transFigure,
+                                 color="black", fontsize=16, ha='left')
+
+                    # Save figure
+                    fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
+
+        # Loop over test set and find predictions
+        shallow_pred_classes = []
+        deep_pred_classes = []
+        true_classes = []
+        for ins, outs, in ds_testing:
+            # Make predictions
+            shallow_predictions = shallow_model.predict(ins)
+            deep_predictions = deep_model.predict(ins)
+
+            # Find prediction with highest softmax activation
+            shallow_highest_class = np.empty(shallow_predictions.shape[0])
+            deep_highest_class = np.empty(deep_predictions.shape[0])
+            for i in range(shallow_predictions.shape[0]):
+                shallow_highest_class[i] = np.argmax(shallow_predictions[i])
+                deep_highest_class[i] = np.argmax(deep_predictions[i])
+
+            # Add batch to current lists
+            shallow_pred_classes.extend(shallow_highest_class)
+            deep_pred_classes.extend(deep_highest_class)
+            true_classes.extend(outs)
+
+        # Convert python lists to numpy
+        shallow_pred_classes = np.array(shallow_pred_classes)
+        deep_pred_classes = np.array(deep_pred_classes)
+        true_classes = np.array(true_classes)
+
+        # Make confusion matrices
+        shallow_cm = confusion_matrix(true_classes, shallow_pred_classes)
+        deep_cm = confusion_matrix(true_classes, deep_pred_classes)
+
+        # Make shallow confusion matrix figure
+        shallow_disp = ConfusionMatrixDisplay(confusion_matrix=shallow_cm)
+        shallow_disp.plot()
+        plt.title(f'Shallow Confusion Matrix Rotation {r}')
+        plt.savefig(f'figures/fig5_shallow_rot_{r}.png')
+        plt.close()
+
+        # Make deep confusion matrix figure
+        deep_disp = ConfusionMatrixDisplay(confusion_matrix=deep_cm)
+        deep_disp.plot()
+        plt.title(f'Deep Confusion Matrix Rotation {r}')
+        plt.savefig(f'figures/fig5_deep_rot_{r}.png')
+        plt.close()
 
 
 if __name__ == '__main__':
@@ -125,11 +180,11 @@ if __name__ == '__main__':
         'precache': 'datasets_by_fold_4_objects',
         'meta_dataset': 'core50_df.pkl',
         'Nfolds': 5,
-        'rotation': 0,
         'Ntraining': 3,
+        'batch': 1024,
         'cache': '',
         'prefetch': 8,
         'repeat': False,
         'shuffle': 0
     }
-    figure4_5(args)
+    figure4_5(args, 5)
