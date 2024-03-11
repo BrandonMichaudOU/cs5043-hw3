@@ -124,7 +124,7 @@ def figure4_5(args, num_fig4):
                                  color="black", fontsize=12, ha='center')
 
                     # Overlay deep predictions
-                    plt.text(0.25, 0.8, 'Deep', transform=plt.gcf().transFigure, color="black", fontsize=12,
+                    plt.text(0.75, 0.8, 'Deep', transform=plt.gcf().transFigure, color="black", fontsize=12,
                              ha='center')
                     for j, text in enumerate(deep_predictions[i]):
                         plt.text(0.75, 0.8 - (j + 1) * 0.1, f'{j}: {text * 100:.2f}%', transform=plt.gcf().transFigure,
