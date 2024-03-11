@@ -78,8 +78,10 @@ def figure3():
 
     # Plot histogram of accuracies
     fig = plt.figure()
-    plt.hist(shallow_test_accuracy, bins=5, color='blue', edgecolor='black', alpha=0.5, label='Shallow')
-    plt.hist(deep_test_accuracy, bins=5, color='red', edgecolor='black', alpha=0.5, label='Deep')
+    bins = np.linspace(start=min(np.min(shallow_test_accuracy), np.min(deep_test_accuracy)),
+                       stop=max(np.max(shallow_test_accuracy), np.max(deep_test_accuracy)), num=11)
+    plt.hist(shallow_test_accuracy, bins=bins, color='blue', edgecolor='black', alpha=0.5, label='Shallow')
+    plt.hist(deep_test_accuracy, bins=bins, color='red', edgecolor='black', alpha=0.5, label='Deep')
     plt.title('Frequency of Test Accuracy')
     plt.xlabel('Test Accuracy')
     plt.ylabel('Frequency')
@@ -191,4 +193,5 @@ if __name__ == '__main__':
         'repeat': False,
         'shuffle': 0
     }
-    figure4_5(args, 5)
+    figure3()
+    # figure4_5(args, 5)
