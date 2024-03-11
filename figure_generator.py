@@ -5,6 +5,7 @@ import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
 from core50 import *
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
 def load_precached_folds(args, seed=42):
@@ -88,6 +89,7 @@ def figure4_5(args):
     ds_train, ds_validation, ds_testing, n_classes = load_precached_folds(args)
     model = keras.models.load_model('results/image_Csize_5_3_Cfilters_10_10_Pool_2_2_Pad_valid_hidden_50_20_LR_0.001000_'
                                     'ntrain_03_rot_00_model')
+
     # for ins, outs in ds_testing.take(1):
     #     predictions = model.predict(ins)
     #     for i in range(ins.shape[0]):
@@ -98,12 +100,6 @@ def figure4_5(args):
     #             plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
     #                      ha='left')
     #         fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
-
-    # predictions = model.predict(ds_testing)
-    # pred_classes = np.empty(predictions.shape[0])
-    # for i in range(predictions.shape[0]):
-    #     pred_classes[i] = np.argmax(predictions[i])
-    # print(predictions.shape)
 
     pred_classes = []
     true_classes = []
@@ -116,7 +112,11 @@ def figure4_5(args):
         true_classes.extend(outs)
     pred_classes = np.array(pred_classes)
     true_classes = np.array(true_classes)
-    print(pred_classes.shape)
+    cm = confusion_matrix(true_classes, pred_classes)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+    disp.plot()
+    plt.title("Confusion Matrix")
+    plt.savefig('figures/fig5.png')
 
 
 if __name__ == '__main__':
@@ -128,7 +128,6 @@ if __name__ == '__main__':
         'rotation': 0,
         'Ntraining': 3,
         'cache': '',
-        'batch': 2,
         'prefetch': 8,
         'repeat': False,
         'shuffle': 0
