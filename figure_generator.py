@@ -118,17 +118,17 @@ def figure4_5(args, num_fig4):
 
                     # Overlay shallow predictions
                     plt.text(0.25, 0.8, 'Shallow', transform=plt.gcf().transFigure, color="black", fontsize=12,
-                             ha='center')
+                             ha='center', bbox=dict(facecolor='white', alpha=0.5))
                     for j, text in enumerate(shallow_predictions[i]):
                         plt.text(0.25, 0.8 - (j + 1) * 0.1, f'{j}: {text * 100:.2f}%', transform=plt.gcf().transFigure,
-                                 color="black", fontsize=12, ha='center')
+                                 color="black", fontsize=12, ha='center', bbox=dict(facecolor='white', alpha=0.5))
 
                     # Overlay deep predictions
                     plt.text(0.75, 0.8, 'Deep', transform=plt.gcf().transFigure, color="black", fontsize=12,
-                             ha='center')
+                             ha='center', bbox=dict(facecolor='white', alpha=0.5))
                     for j, text in enumerate(deep_predictions[i]):
                         plt.text(0.75, 0.8 - (j + 1) * 0.1, f'{j}: {text * 100:.2f}%', transform=plt.gcf().transFigure,
-                                 color="black", fontsize=12, ha='center')
+                                 color="black", fontsize=12, ha='center', bbox=dict(facecolor='white', alpha=0.5))
 
                     # Save figure
                     fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
