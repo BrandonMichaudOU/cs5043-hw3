@@ -95,7 +95,7 @@ def figure4(args):
             plt.imshow(ins[0])
             plt.axis('off')
             for j, text in enumerate(predictions[i]):
-                plt.text(0.8, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="white", fontsize=20,
+                plt.text(0.7, 0.8 - j * 0.1, f'{text:.3f}', transform=plt.gcf().transFigure, color="black", fontsize=20,
                          ha='left')
             fig.savefig(f'figures/fig4_{i}.png', bbox_inches='tight', pad_inches=0)
 
