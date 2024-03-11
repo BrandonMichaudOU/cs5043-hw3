@@ -79,7 +79,7 @@ def figure3():
     # Plot histogram of accuracies
     fig = plt.figure()
     bins = np.linspace(start=min(np.min(shallow_test_accuracy), np.min(deep_test_accuracy)),
-                       stop=max(np.max(shallow_test_accuracy), np.max(deep_test_accuracy)), num=11)
+                       stop=max(np.max(shallow_test_accuracy), np.max(deep_test_accuracy)), num=8)
     plt.hist(shallow_test_accuracy, bins=bins, color='blue', edgecolor='black', alpha=0.5, label='Shallow')
     plt.hist(deep_test_accuracy, bins=bins, color='red', edgecolor='black', alpha=0.5, label='Deep')
     plt.title('Frequency of Test Accuracy')
